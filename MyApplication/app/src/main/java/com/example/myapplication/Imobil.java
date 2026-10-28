@@ -17,6 +17,9 @@ public class Imobil implements Serializable {
         this.moneda = moneda;
         this.notaZona = notaZona;
     }
+    public String getAdresa() {
+        return adresa;
+    }
 
     @Override
     public String toString(){

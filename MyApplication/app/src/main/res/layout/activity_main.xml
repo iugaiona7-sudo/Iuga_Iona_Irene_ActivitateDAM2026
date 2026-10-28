@@ -6,29 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Aplicație Gestiune Imobile"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnAdauga"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adaugă Imobil" />
-
+        android:text="Adaugă Imobil (Standard)"
+        android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/btnAdaugaAI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adaugă Imobil (AI Design)" />
+        android:text="Adaugă Imobil (AI Design)"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnVeziLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vezi Listă Imobile" />
 
 </LinearLayout>
 

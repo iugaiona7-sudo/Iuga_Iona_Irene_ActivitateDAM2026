@@ -9,15 +9,18 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> launcherAdaugare;
+
+    private ArrayList<Imobil> listaImobile = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         launcherAdaugare = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -27,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
                         if (bundle != null) {
                             Imobil imobilPrimit = (Imobil) bundle.getSerializable("obiect_imobil");
                             if (imobilPrimit != null) {
-                                Toast.makeText(MainActivity.this, imobilPrimit.toString(), Toast.LENGTH_LONG).show();
+                                listaImobile.add(imobilPrimit);
+                                Toast.makeText(MainActivity.this, "Imobil adăugat! Total: " + listaImobile.size(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 }
         );
 
-
-        Button btnDeschideAdaugare = findViewById(R.id.btnAdauga);
-        if (btnDeschideAdaugare != null) {
-            btnDeschideAdaugare.setOnClickListener(v -> {
+        Button btnDeschide = findViewById(R.id.btnAdauga);
+        if (btnDeschide != null) {
+            btnDeschide.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, AdaugareImobiliar.class);
                 launcherAdaugare.launch(intent);
             });
@@ -48,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
             btnDeschideAI.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, AdaugareImobiliarAI.class);
                 launcherAdaugare.launch(intent);
+            });
+        }
+
+
+        Button btnVeziLista = findViewById(R.id.btnVeziLista);
+        if (btnVeziLista != null) {
+            btnVeziLista.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, ListaImobilActivity.class);
+                intent.putExtra("lista_imobile", listaImobile);
+                startActivity(intent);
             });
         }
     }
